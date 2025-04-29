@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - secrets.yaml
+  - configmap.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: online-appointment-booking-system
+  app.kubernetes.io/component: notification-service
+
+configMapGenerator:
+  - name: notification-service-config
+    behavior: merge
+    literals:
+      - SPRING_KAFKA_CONSUMER_GROUP_ID=notification-service
+
+images:
+  - name: notification-service
+    newName: notification-service
+    newTag: latest

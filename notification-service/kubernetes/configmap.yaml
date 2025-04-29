@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notification-service-config
+data:
+  application.properties: |
+    # Server Configuration
+    server.port=8082
+    spring.application.name=notification-service
+
+    # Kafka Configuration
+    spring.kafka.bootstrap-servers=${SPRING_KAFKA_BOOTSTRAP_SERVERS:kafka-service:9092}
+    spring.kafka.consumer.group-id=notification-service
+    spring.kafka.consumer.auto-offset-reset=earliest
+
+    # Logging Configuration
+    logging.level.com.booking.notificationservice=INFO
+    logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
