@@ -1,24 +1,25 @@
 import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
-import Layout from '../components/layout/Layout';
+import { useAuthStore } from './../store/authStore';
+import Layout from './../components/layout/Layout';
 
 // Auth Pages
-import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
+import Login from './../pages/auth/Login';
+import Register from './../pages/auth/Register';
 
 // Public Pages
-import Home from '../pages/Home';
-import DoctorList from '../pages/doctors/DoctorList';
+import Home from './../pages/Home';
+import DoctorList from './../pages/doctors/DoctorList';
 
 // Patient Pages
-import Dashboard from '../pages/dashboard/Dashboard';
-import BookAppointment from '../pages/booking/BookAppointment';
+import Dashboard from './../pages/dashboard/Dashboard';
+import BookAppointment from './../pages/booking/BookAppointment';
 
 // Admin Pages
-import AdminPanel from '../pages/admin/AdminPanel';
+import AdminPanel from './../pages/admin/AdminPanel';
+import React from 'react';
 
 // Protected Route Wrapper
-const ProtectedRoute = ({ children, allowedRoles }: { children: JSX.Element, allowedRoles?: string[] }) => {
+const ProtectedRoute = ({ children, allowedRoles }: { children: React.ReactNode, allowedRoles?: string[] }) => {
   const { isAuthenticated, user } = useAuthStore();
   
   if (!isAuthenticated) {
@@ -34,7 +35,7 @@ const ProtectedRoute = ({ children, allowedRoles }: { children: JSX.Element, all
 };
 
 // Admin Route Wrapper
-const AdminRoute = ({ children }: { children: JSX.Element }) => {
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
   return (
     <ProtectedRoute allowedRoles={['ADMIN']}>
       {children}
