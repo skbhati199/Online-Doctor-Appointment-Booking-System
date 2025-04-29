@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
-  Box, Typography, Paper, Grid, TextField, Button, 
+  Box, Typography, Paper, TextField, Button, 
   FormControl, FormHelperText, CircularProgress, Alert
 } from '@mui/material';
+import { Grid } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { useForm, Controller } from 'react-hook-form';
 import { useAuthStore } from '../../store/authStore';
@@ -43,10 +44,10 @@ const BookAppointment = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthStore();
   
-  const [doctor, setDoctor] = useState(null);
+  const [doctor, setDoctor] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   
   const { control, handleSubmit, formState: { errors } } = useForm<BookingFormData>({
     defaultValues: {
@@ -86,7 +87,7 @@ const BookAppointment = () => {
     fetchDoctor();
   }, [doctorId, isAuthenticated, navigate]);
 
-  const onSubmit = async (data: BookingFormData) => {
+  const onSubmit = async (_data: BookingFormData) => {
     try {
       setSubmitting(true);
       setError(null);
@@ -149,8 +150,8 @@ const BookAppointment = () => {
       </Typography>
       
       <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+        <Grid component="div" container spacing={3}>
+        <Grid component="div" xs={12} md={6}>
             <Typography variant="h6" gutterBottom>
               Doctor Details
             </Typography>
@@ -168,7 +169,7 @@ const BookAppointment = () => {
             </Typography>
           </Grid>
           
-          <Grid item xs={12} md={6}>
+          <Grid component="div" xs={12} md={6}>
             <Typography variant="h6" gutterBottom>
               Appointment Details
             </Typography>

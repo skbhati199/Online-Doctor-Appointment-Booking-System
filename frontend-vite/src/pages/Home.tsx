@@ -1,4 +1,4 @@
-import { Box, Typography, Button, Container, Grid, Card, CardContent } from '@mui/material';
+import { Box, Typography, Button, Container, Grid, Card } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { MedicalServices, CalendarMonth, Person } from '@mui/icons-material';
 
@@ -42,7 +42,7 @@ const Home = () => {
           Why Choose Our Platform?
         </Typography>
         <Grid container spacing={4} sx={{ mt: 4 }}>
-          <Grid item xs={12} md={4}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', sm: 'span 6', md: 'span 4' } }}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3 }}>
               <MedicalServices fontSize="large" color="primary" sx={{ fontSize: 60, mb: 2 }} />
               <Typography variant="h6" align="center" sx={{ mb: 2 }}>
@@ -53,7 +53,7 @@ const Home = () => {
               </Typography>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', sm: 'span 6', md: 'span 4' } }}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3 }}>
               <CalendarMonth fontSize="large" color="primary" sx={{ fontSize: 60, mb: 2 }} />
               <Typography variant="h6" align="center" sx={{ mb: 2 }}>
@@ -64,7 +64,7 @@ const Home = () => {
               </Typography>
             </Card>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', sm: 'span 6', md: 'span 4' } }}>
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', p: 3 }}>
               <Person fontSize="large" color="primary" sx={{ fontSize: 60, mb: 2 }} />
               <Typography variant="h6" align="center" sx={{ mb: 2 }}>

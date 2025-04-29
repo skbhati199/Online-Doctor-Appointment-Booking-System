@@ -1,15 +1,26 @@
 import { useState, useEffect } from 'react';
 import { 
   Box, Typography, Grid, Card, CardContent, CardActions, Button, 
-  TextField, FormControl, InputLabel, Select, MenuItem, CircularProgress,
-  Chip, Avatar, Divider, Paper
+  FormControl, InputLabel, Select, MenuItem, CircularProgress,
+  Chip, Avatar, Divider, Paper, SelectChangeEvent
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
+// Define Doctor interface
+interface Doctor {
+  id: string;
+  name: string;
+  specialization: string;
+  qualification: string;
+  experience: string;
+  contactNumber: string;
+  email: string;
+  isAvailable: boolean;
+}
+
 // Mock data for demonstration
-const mockDoctors = [
+const mockDoctors: Doctor[] = [
   {
     id: 'd1',
     name: 'Dr. John Smith',
@@ -52,7 +63,7 @@ const mockDoctors = [
   }
 ];
 
-const mockSpecializations = [
+const mockSpecializations: string[] = [
   'Cardiology',
   'Neurology',
   'Orthopedics',
@@ -64,10 +75,10 @@ const mockSpecializations = [
 
 const DoctorList = () => {
   const navigate = useNavigate();
-  const [doctors, setDoctors] = useState([]);
-  const [specializations, setSpecializations] = useState([]);
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [specializations, setSpecializations] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   
   const [selectedSpecialization, setSelectedSpecialization] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -93,20 +104,22 @@ const DoctorList = () => {
     fetchDoctors();
   }, []);
 
-  const handleSpecializationChange = (event) => {
+  const handleSpecializationChange = (event: SelectChangeEvent) => {
     setSelectedSpecialization(event.target.value);
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      setSelectedDate(date);
+    }
   };
 
-  const handleBookAppointment = (doctorId) => {
+  const handleBookAppointment = (doctorId: string) => {
     navigate(`/booking/${doctorId}`);
   };
 
   // Filter doctors based on selected specialization
-  const filteredDoctors = doctors.filter(doctor => {
+  const filteredDoctors = doctors.filter((doctor: Doctor) => {
     if (!selectedSpecialization) return true;
     return doctor.specialization === selectedSpecialization;
   });
@@ -120,7 +133,7 @@ const DoctorList = () => {
       {/* Filter Section */}
       <Paper sx={{ mb: 4, p: 3, borderRadius: 2 }}>
         <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} md={5}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', md: 'span 5' } }}>
             <FormControl fullWidth variant="outlined">
               <InputLabel id="specialization-label">Specialization</InputLabel>
               <Select
@@ -136,7 +149,7 @@ const DoctorList = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', md: 'span 5' } }}>
             <DatePicker
               label="Appointment Date"
               value={selectedDate}
@@ -144,7 +157,7 @@ const DoctorList = () => {
               slotProps={{ textField: { fullWidth: true, variant: 'outlined' } }}
             />
           </Grid>
-          <Grid item xs={12} md={2}>
+          <Grid sx={{ gridColumn: { xs: 'span 12', md: 'span 2' } }}>
             <Button 
               variant="contained" 
               color="primary" 
@@ -172,7 +185,7 @@ const DoctorList = () => {
       ) : (
         <Grid container spacing={3}>
           {filteredDoctors.map((doctor) => (
-            <Grid item xs={12} sm={6} md={4} key={doctor.id}>
+            <Grid sx={{ gridColumn: { xs: 'span 12', sm: 'span 6', md: 'span 4' } }} key={doctor.id}>
               <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>

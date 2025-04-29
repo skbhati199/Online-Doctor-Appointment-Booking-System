@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # PostgreSQL Database
   postgres:
@@ -12,7 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: appointment_db
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - appointment-network
       
@@ -49,19 +47,17 @@ services:
       - appointment-network
 
   # Frontend for development
-  frontend-dev:
-    image: node:18-alpine
-    container_name: appointment-frontend-dev
-    working_dir: /app
+  frontend-prod:
+    image: nginx:alpine
+    container_name: appointment-frontend-prod
     volumes:
-      - ./frontend-vite:/app
+      - ./frontend-vite/dist:/usr/share/nginx/html
     ports:
-      - "5173:5173"
-    command: sh -c "cd /app && npm install && npm run dev -- --host 0.0.0.0"
+      - "80:80"
     networks:
       - appointment-network
   
-  # API Gateway (Spring Cloud Gateway) - Using placeholder for development
+  # API Gateway (Using Nginx as a simple reverse proxy)
   api-gateway:
     image: nginx:alpine
     container_name: appointment-api-gateway
@@ -72,10 +68,7 @@ services:
     networks:
       - appointment-network
 
-  # Mock backend services for frontend development
-  # These will be replaced with the actual microservices later
-
-  # Mock User Service
+  # Mock backend services
   user-service:
     image: alpine:latest
     container_name: appointment-user-service
@@ -85,7 +78,6 @@ services:
     networks:
       - appointment-network
 
-  # Mock Doctor Service
   doctor-service:
     image: alpine:latest
     container_name: appointment-doctor-service
@@ -95,7 +87,6 @@ services:
     networks:
       - appointment-network
 
-  # Mock Appointment Service
   appointment-service:
     image: alpine:latest
     container_name: appointment-appointment-service
@@ -105,7 +96,6 @@ services:
     networks:
       - appointment-network
 
-  # Mock Notification Service
   notification-service:
     image: alpine:latest
     container_name: appointment-notification-service
@@ -115,13 +105,23 @@ services:
     networks:
       - appointment-network
 
-  # Mock Admin Service
   admin-service:
     image: alpine:latest
     container_name: appointment-admin-service
     command: sh -c "echo 'Admin service mock started' && tail -f /dev/null"
     ports:
       - "8085:8085"
+    networks:
+      - appointment-network
+
+  # MongoDB for Doctor Service
+  mongo:
+    image: mongo:latest
+    container_name: appointment-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
     networks:
       - appointment-network
 
@@ -132,3 +132,4 @@ networks:
 
 volumes:
   postgres_data:
+  mongo_data:
