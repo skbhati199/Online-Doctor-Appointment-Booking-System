@@ -78,37 +78,37 @@ API Gateway (Spring Cloud Gateway)
 
 ### 💻 **Frontend TODO (React.js)**
 - [ ] Authentication and User Management:
-    - [ ] Login page with JWT integration
-    - [ ] Registration form with validation
+    - [x] Login page with JWT integration
+    - [x] Registration form with validation
     - [ ] Password reset functionality
     - [ ] User profile management
-    - [ ] Role-based access control (Patient, Doctor, Admin)
+    - [x] Role-based access control (Patient, Doctor, Admin)
 - [ ] Doctor Management:
-    - [ ] Browse doctors with search functionality
-    - [ ] Filter doctors by specialization, date, and availability
+    - [x] Browse doctors with search functionality
+    - [x] Filter doctors by specialization, date, and availability
     - [ ] Doctor profile view with details and schedule
     - [ ] Doctor rating and review system (optional)
 - [ ] Appointment Management:
-    - [ ] Interactive calendar for slot selection
-    - [ ] Appointment booking form with validation
+    - [x] Interactive calendar for slot selection
+    - [x] Appointment booking form with validation
     - [ ] Appointment cancellation and rescheduling
     - [ ] Confirmation emails/notifications integration
 - [ ] User Dashboard:
-    - [ ] Upcoming appointments display
-    - [ ] Appointment history with status
+    - [x] Upcoming appointments display
+    - [x] Appointment history with status
     - [ ] Notification center for updates
     - [ ] Medical records access (optional)
 - [ ] Admin Panel:
-    - [ ] User management interface
-    - [ ] Doctor management interface
-    - [ ] Appointment oversight and management
-    - [ ] Analytics dashboard with charts
+    - [x] User management interface
+    - [x] Doctor management interface
+    - [x] Appointment oversight and management
+    - [x] Analytics dashboard with charts
     - [ ] System configuration settings
 - [ ] General UI/UX:
-    - [ ] Responsive design for mobile and desktop
+    - [x] Responsive design for mobile and desktop
     - [ ] Accessible components following WCAG guidelines
     - [ ] Theme customization and dark mode support
-    - [ ] Loading states and error handling
+    - [x] Loading states and error handling
 
 ---
 
