@@ -1,8 +1,9 @@
 # Online Appointment Booking System
 
-<p align="center">
-  <img src="https://github.com/skbhati199/Online-Doctor-Appointment-Booking-System/tree/main/frontend-vite/art/blob/main/frontend.png" alt="App Cover" width="100%" />
+<p align="center" style="border-radius: 12px;">
+  <img style="border-radius: 12px;" src="https://raw.githubusercontent.com/skbhati199/Online-Doctor-Appointment-Booking-System/main/frontend-vite/art/frontend.png" alt="Online Appointment Booking System Cover" width="100%" />
 </p>
+
 ## Overview
 The Online Appointment Booking System is a microservices-based application designed to streamline the process of scheduling and managing appointments. It provides a user-friendly interface for patients to book appointments, reschedule, and cancel them. Doctors can also manage their schedules and receive notifications for upcoming appointments. A microservices-based application for managing doctor appointments, with features for patients to book, reschedule, and cancel appointments, and for doctors to manage their schedules.
 
