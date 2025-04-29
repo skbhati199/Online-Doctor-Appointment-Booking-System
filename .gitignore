@@ -27,3 +27,5 @@ frontend-vite/.env
 frontend-vite/.env.local
 
 postgres_data
+
+TODO.md
